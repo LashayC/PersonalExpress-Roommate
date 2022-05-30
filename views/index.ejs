@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>21 Savage Fans</title>
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="stylesheet" href="font-awesome.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <h1>The Neighborhood</h1>
+  <h2>Keep up with what's happening in your backyard.</h2>
+
+
+  <h3>Posts</h3>
+  <ul class="messages">
+    <% for(let i=0; i<posts.length; i++) {%>
+      <li id="<%=posts[i]._id%>">
+        <h2>Tag:
+          <%= posts[i].postType %>
+        </h2>
+        <p>
+          Poster:
+          <%= posts[i].name%>, <%=posts[i].date %>
+        </p>
+
+        <span>
+          Location:
+          <%= posts[i].location %>
+        </span>
+
+        <p>
+          Message:
+          <%= posts[i].message %>
+        </p>
+
+        <p>
+          <%= posts[i].email=='' ? '' : `Email: ${posts[i].email}` %>
+        </p>
+
+        <p>
+          <%= posts[i].phoneNumber=='' ? '' : `Phone: ${posts[i].phoneNumber}` %>
+        </p>
+
+        <h3>React:</h3>
+        <span>
+          Heart
+          <span><%= posts[i].heart %></span>
+          <i class="fa fa-heart" aria-hidden="true"></i>
+        </span>
+
+        <span>
+          Going
+          <span><%= posts[i].going %></span>
+          <i class="fa fa-arrow-right" aria-hidden="true"></i>
+        </span>
+
+        <span>
+          Contacted
+          <span><%= posts[i].contacted %></span>
+          <i class="fa fa-phone" aria-hidden="true"></i>
+        </span>
+
+        <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+
+      </li>
+      <% } %>
+  </ul>
+
+
+
+  <h2>Post to your Neighbors</h2>
+  <form action="/addNeighborPost" method="POST">
+    <fieldset>
+      <legend>Post</legend>
+
+      <label>
+        Who This?
+        <input type="text" name="name" placeholder="enter name" required>
+      </label>
+
+      <label for="postType">Type of Post:</label>
+      <select name="postType" id="postType" required>
+        <option value="Other">Other</option>
+        <option value="Crime">Crime</option>
+        <option value="Community Event">Community Event</option>
+        <option value="Lost and Found">Lost and Found</option>
+        <option value="Sell or Buy">Sell/Buy</option>
+      </select>
+
+      <label>
+        Enter Date:
+        <input type="date" name="date" required>
+      </label>
+
+      <label>
+        Location:
+        <input type="text" name="location" placeholder="" required>
+      </label>
+
+      <label>
+        Message:
+        <textarea name="message" cols="30" rows="10" required placeholder="What's going on.."></textarea>
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Contact Info</legend>
+      <label>
+        Email:
+        <input type="email" name="email" placeholder="optional">
+      </label>
+      <label>
+        Phone Number:
+        <input type="number" name="phoneNumber" placeholder="optional">
+      </label>
+
+    </fieldset>
+    <button type="submit">Submit</button>
+  </form>
+
+  <script src="main.js"></script>
+
+</body>
+
+</html>
